@@ -53,4 +53,4 @@ dependencies {
 
     testCompile group: 'commons-logging'      , name: 'commons-logging'  , version: commons_logging_version
     testCompile group: 'commons-lang'         , name: 'commons-lang'     , version: commons_lang_version
-
+}
