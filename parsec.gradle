@@ -1,6 +1,8 @@
 //See gradle.properties for project properties
 buildscript{
-    loadProperties()
+    def props = new Properties()
+    props.load(new URL("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties").openStream())
+    props.each { key, val -> project.ext.set(key, val) }
     repositories{
         maven{
             url "https://plugins.gradle.org/m2/"
@@ -61,10 +63,4 @@ dependencies {
     testCompile(group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: project.jersey_version) {
         exclude(module: 'javax.servlet-api')
     }
-}
-
-def loadProperties(){
-    def props = new Properties()
-    props.load(new URL("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties").openStream())
-    props.each { key, val -> project.ext.set(key, val) }
 }
