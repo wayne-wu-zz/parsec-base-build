@@ -1,5 +1,5 @@
 def props = new Properties()
-props.load(new FileInputStream("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties"))
+props.load(new URL("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties").openStream())
 props.each { key, val -> project.ext.set(key, val) }
 
 //See gradle.properties for project properties
