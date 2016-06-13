@@ -10,11 +10,11 @@ buildscript{
         }
     }
     dependencies {
-        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: project.parsec_gradle_version
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: '1.1.1'
     }
 }
 
-//apply plugin: 'com.yahoo.parsec.gradle-plugin'
+apply plugin: 'com.yahoo.parsec.gradle-plugin'
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'checkstyle'
@@ -28,9 +28,6 @@ description = """parsec-base-build"""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-configurations.all {
-}
 
 repositories {
     mavenCentral()

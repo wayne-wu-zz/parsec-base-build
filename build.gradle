@@ -29,9 +29,6 @@ description = """parsec-base-build"""
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-configurations.all {
-}
-
 repositories {
     mavenCentral()
     jcenter()
