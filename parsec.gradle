@@ -1,4 +1,5 @@
-apply from: "https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties"
+Properties props = new Properties()
+props.load(new FileInputStream("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties"))
 
 //See gradle.properties for project properties
 buildscript{
