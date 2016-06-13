@@ -1,4 +1,4 @@
-apply from: "gradle.properties"
+apply from: "./gradle.properties"
 
 //See gradle.properties for project properties
 buildscript{
