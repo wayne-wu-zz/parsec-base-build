@@ -1,4 +1,4 @@
-apply from: "./gradle.properties"
+apply from: "https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties"
 
 //See gradle.properties for project properties
 buildscript{
@@ -8,7 +8,7 @@ buildscript{
         }
     }
     dependencies {
-        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: '1.1.1'
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: parsec_gradle_version
     }
 }
 
