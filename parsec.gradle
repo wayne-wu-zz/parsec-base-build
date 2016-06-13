@@ -14,7 +14,7 @@ buildscript{
     }
 }
 
-apply plugin: 'com.yahoo.parsec.gradle-plugin'
+//apply plugin: 'com.yahoo.parsec.gradle-plugin'
 apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'checkstyle'
