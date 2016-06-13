@@ -1,36 +1,56 @@
 //See gradle.properties for project properties
 buildscript{
     repositories{
-        jcenter()
-    }
-    dependencies {
-        classpath group: 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
-    }
-}
-
-apply plugin: 'com.jfrog.bintray'
-
-bintray {
-    user = 'wayne-wu'
-    key = 'a245711e4bda3c86fbe9210a8ac615462721d211'
-
-    filesSpec{
-        from '.'
-        into '.'
-    }
-
-    publish = true
-
-    pkg {
-        repo = 'Gradle'
-        name = 'parsec-base-build'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/wayne-wu/Gradle.git'
-
-        version {
-            name = project.version
+        maven{
+            url "https://plugins.gradle.org/m2/"
         }
     }
+    dependencies {
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: '1.1.1'
+    }
+}
+
+apply plugin: 'com.yahoo.parsec.gradle-plugin'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
+group = 'com.yahoo.parsec.base_build'
+version = project.version
+
+description = """parsec-base-build"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations.all {
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
 
 }
+
+dependencies {
+    //NOT AVAILABLE YET
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_clients'             , version:'1.0.34'
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_config'              , version:'1.0.0'
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_validation'          , version:'2.0.0'
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_logging'             , version:'1.0.2'
+
+    compile group: 'com.google.inject'              , name: 'guice'                      , version: guice_version
+    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-common'              , version: jersey_version
+    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-server'              , version: jersey_version
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet'   , version: jersey_version
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: jersey_version
+    compile group: 'org.glassfish.jersey.media'     , name: 'jersey-media-moxy'          , version: jersey_version
+    compile group: 'org.eclipse.jetty'              , name: 'jetty-servlet'              , version: jetty_version
+    compile group: 'javax.servlet'                  , name: 'javax.servlet-api'          , version: servlet_version
+    compile group: 'org.slf4j'                      , name: 'slf4j-api'                  , version: slf4j_version
+
+    testCompile group: 'commons-logging'      , name: 'commons-logging'  , version: commons_logging_version
+    testCompile group: 'commons-lang'         , name: 'commons-lang'     , version: commons_lang_version
 
