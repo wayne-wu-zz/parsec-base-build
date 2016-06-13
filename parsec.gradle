@@ -1,8 +1,8 @@
+//See gradle.properties for project properties
 def props = new Properties()
 props.load(new URL("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties").openStream())
 props.each { key, val -> project.ext.set(key, val) }
 
-//See gradle.properties for project properties
 buildscript{
     repositories{
         maven{
@@ -10,7 +10,7 @@ buildscript{
         }
     }
     dependencies {
-        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: '1.1.1'
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: project.parsec_gradle_version
     }
 }
 
