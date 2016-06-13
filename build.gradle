@@ -10,7 +10,7 @@ buildscript{
         }
     }
     dependencies {
-        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: project.parsec_gradle_version
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: project.parsecGradleVersion
     }
 }
 
