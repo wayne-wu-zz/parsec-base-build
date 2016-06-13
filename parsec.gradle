@@ -64,7 +64,7 @@ dependencies {
     }
     testCompile group: 'org.ow2.asm'          , name: 'asm-all'          , version: project.asm_all_version
     testCompile group: 'org.objenesis'        , name: 'objenesis'        , version: project.objenesis_version
-    testCompile(group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: jersey_version) {
+    testCompile(group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: project.jersey_version) {
         exclude(module: 'javax.servlet-api')
     }
 }
