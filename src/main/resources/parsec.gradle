@@ -1,0 +1,74 @@
+//See gradle.properties for project properties
+buildscript{
+
+    //Load project properties (a bit ugly here)
+    def props = new Properties()
+    props.load(new URL("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties").openStream())
+    props.each { key, val ->
+        if(!project.hasProperty(key)){
+            project.ext.set(key, val)
+        }
+    }
+
+    //Add in dependencies for parsec-gradle-plugin
+    repositories{
+        maven{
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: parsec_gradle_version
+    }
+}
+
+apply plugin: com.yahoo.parsec.gradle.ParsecGradlePlugin
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
+group = 'com.yahoo.parsec.base_build'
+version = project.version
+
+description = """parsec-base-build"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+
+}
+
+dependencies {
+    //NOT AVAILABLE YET
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_clients'             , version:'1.0.34'
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_config'              , version:'1.0.0'
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_validation'          , version:'2.0.0'
+    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_logging'             , version:'1.0.2'
+
+    compile group: 'com.google.inject'              , name: 'guice'                      , version: guice_version
+    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-common'              , version: jersey_version
+    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-server'              , version: jersey_version
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet'   , version: jersey_version
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: jersey_version
+    compile group: 'org.glassfish.jersey.media'     , name: 'jersey-media-moxy'          , version: jersey_version
+    compile group: 'org.eclipse.jetty'              , name: 'jetty-servlet'              , version: jetty_version
+    compile group: 'javax.servlet'                  , name: 'javax.servlet-api'          , version: servlet_version
+    compile group: 'org.slf4j'                      , name: 'slf4j-api'                  , version: slf4j_version
+
+    testCompile group: 'commons-logging'      , name: 'commons-logging'  , version: commons_logging_version
+    testCompile group: 'commons-lang'         , name: 'commons-lang'     , version: commons_lang_version
+    testCompile group: 'org.spockframework'   , name: 'spock-core'       , version: spock_version
+    testCompile(group: 'cglib'                , name: 'cglib'            , version: cglib_version) {
+        exclude(module: 'asm-util')
+        exclude(module: 'asm')
+    }
+    testCompile group: 'org.ow2.asm'          , name: 'asm-all'          , version: asm_all_version
+    testCompile group: 'org.objenesis'        , name: 'objenesis'        , version: objenesis_version
+    testCompile(group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: jersey_version) {
+        exclude(module: 'javax.servlet-api')
+    }
+}

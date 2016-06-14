@@ -17,7 +17,7 @@ buildscript{
         }
     }
     dependencies {
-        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: parsec_gradle_version
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: parsecGradleVersion
     }
 }
 
@@ -27,16 +27,23 @@ apply plugin: 'maven'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
+apply plugin: 'jdepend'
+apply plugin: 'project-report'
+apply plugin: 'jetty'
+apply plugin: 'application'
+apply plugin: 'war'
+
 
 group = 'com.yahoo.parsec.base_build'
 version = project.version
 
-description = """parsec-base-build"""
+description = "parsec-base-build"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+
     mavenCentral()
     jcenter()
 
@@ -49,26 +56,40 @@ dependencies {
     //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_validation'          , version:'2.0.0'
     //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_logging'             , version:'1.0.2'
 
-    compile group: 'com.google.inject'              , name: 'guice'                      , version: guice_version
-    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-common'              , version: jersey_version
-    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-server'              , version: jersey_version
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet'   , version: jersey_version
-    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: jersey_version
-    compile group: 'org.glassfish.jersey.media'     , name: 'jersey-media-moxy'          , version: jersey_version
-    compile group: 'org.eclipse.jetty'              , name: 'jetty-servlet'              , version: jetty_version
-    compile group: 'javax.servlet'                  , name: 'javax.servlet-api'          , version: servlet_version
-    compile group: 'org.slf4j'                      , name: 'slf4j-api'                  , version: slf4j_version
+    compile group: 'com.google.inject'              , name: 'guice'                      , version: guiceVersion
+    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-common'              , version: jerseyVersion
+    compile group: 'org.glassfish.jersey.core'      , name: 'jersey-server'              , version: jerseyVersion
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet'   , version: jerseyVersion
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.media'     , name: 'jersey-media-moxy'          , version: jerseyVersion
+    compile group: 'org.eclipse.jetty'              , name: 'jetty-servlet'              , version: jettyVersion
+    compile group: 'javax.servlet'                  , name: 'javax.servlet-api'          , version: servletVersion
+    compile group: 'org.slf4j'                      , name: 'slf4j-api'                  , version: slf4jVersion
 
-    testCompile group: 'commons-logging'      , name: 'commons-logging'  , version: commons_logging_version
-    testCompile group: 'commons-lang'         , name: 'commons-lang'     , version: commons_lang_version
-    testCompile group: 'org.spockframework'   , name: 'spock-core'       , version: spock_version
-    testCompile(group: 'cglib'                , name: 'cglib'            , version: cglib_version) {
+    testCompile group: 'commons-logging'      , name: 'commons-logging'  , version: commonsLoggingVersion
+    testCompile group: 'commons-lang'         , name: 'commons-lang'     , version: commonsLangVersion
+    testCompile group: 'org.spockframework'   , name: 'spock-core'       , version: spockVersion
+    testCompile(group: 'cglib'                , name: 'cglib'            , version: cglibVersion) {
         exclude(module: 'asm-util')
         exclude(module: 'asm')
     }
-    testCompile group: 'org.ow2.asm'          , name: 'asm-all'          , version: asm_all_version
-    testCompile group: 'org.objenesis'        , name: 'objenesis'        , version: objenesis_version
-    testCompile(group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: jersey_version) {
+    testCompile group: 'org.ow2.asm'          , name: 'asm-all'          , version: asmAllVersion
+    testCompile group: 'org.objenesis'        , name: 'objenesis'        , version: objenesisVersion
+    testCompile(group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-jetty', version: jerseyVersion) {
         exclude(module: 'javax.servlet-api')
     }
 }
+
+findbugs{
+    //findbugs configs
+}
+
+pmd {
+    //pmd configs
+}
+
+checkstyle {
+    //checkstyle configs
+}
+
+
