@@ -4,7 +4,11 @@ buildscript{
     //Load project properties (a bit ugly here)
     def props = new Properties()
     props.load(new URL("https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/gradle.properties").openStream())
-    props.each { key, val -> project.ext.set(key, val) }
+    props.each { key, val ->
+        if(!project.hasProperty(key)){
+            project.ext.set(key, val)
+        }
+    }
 
     //Add in dependencies for parsec-gradle-plugin
     repositories{
