@@ -34,6 +34,7 @@ apply plugin: 'jdepend'
 apply plugin: 'project-report'
 apply plugin: 'jetty'
 apply plugin: 'application'
+apply plugin: 'osgi'
 
 
 group = 'com.yahoo.parsec.base_build'
