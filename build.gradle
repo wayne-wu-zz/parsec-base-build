@@ -48,7 +48,7 @@ release {
 updateVersion << {
     def readme = new File('./README.md')
     def releaseVersion = project.property("release.releaseVersion")
-    ant.replaceregex(file: readme, match: "/parsec-base-build/\\S+/parsec.gradle", replace: "/parsec-base-build/${releaseVersion}/parsec.gradle")
+    ant.replaceregexp(file: readme, match: "/parsec-base-build/\\S+/parsec.gradle", replace: "/parsec-base-build/${releaseVersion}/parsec.gradle")
 }
 
 afterReleaseBuild.dependsOn bintrayUpload
