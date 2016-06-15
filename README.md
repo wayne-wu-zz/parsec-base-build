@@ -7,7 +7,7 @@ It also includes the Parsec Gradle Plugin which is responsible for parsing the R
 ## Usage
 The base build is essentially a Script Plugin and must be inherited using:
 ```
-apply from: 'https://raw.githubusercontent.com/wayne-wu/parsec-base-build/master/parsec.gradle'
+apply from: 'https://dl.bintray.com/wayne-wu/Gradle/parsec-base-build/1.0.0/parsec.gradle'
 ```
 
 The parsec.gradle file includes all necessary dependencies for you to get started with a Parsec project.
