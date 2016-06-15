@@ -21,6 +21,8 @@ buildscript{
     }
 }
 
+project.dependencies
+
 apply plugin: com.yahoo.parsec.gradle.ParsecGradlePlugin
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -81,15 +83,42 @@ dependencies {
 }
 
 findbugs{
-    //findbugs configs
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "high"
+    reportsDir = file("$project.buildDir/findbugsReports")
 }
 
 pmd {
-    //pmd configs
+    exclude '**/parsec_generated/**/*'
+    exclude '**/generated/**/*'
+    exclude '**/clover/**'
 }
 
 checkstyle {
-    //checkstyle configs
+    exclude '**/parsec_generated/**/*'
+    exclude '**/generated/**/*'
+    exclude '**/clover/**'
 }
 
+//tasks.withType(Checkstyle) {
+//    exclude '**/parsec_generated/**/*'
+//    exclude '**/generated/**/*'
+//    exclude '**/clover/**'
+//}
+//
+//tasks.withType(Pmd){
+//    exclude '**/parsec_generated/**/*'
+//    exclude '**/generated/**/*'
+//    exclude '**/clover/**'
+//}
 
+
+parsec {
+    swaggerRootPath = parsecWebappRootPath
+    generateHandlerImpl = true
+    useSmartMethodNames = false
+    handlUncaughtExceptions = parsecHandleUncaughtException
+    generateParsecError = parsecGenerateParsecError
+
+}
