@@ -1,1 +1,48 @@
-//apply from: "./parsec.gradle"
+group = 'com.yahoo.parsec.base-build'
+
+buildscript{
+    repositories{
+        maven{
+            url "https://plugins.gradle.org/m2/"
+        }
+        jcenter()
+    }
+
+    dependencies{
+        classpath group: 'com.jfrog.bintray.gradle' , name: 'gradle-bintray-plugin', version: '1.6'
+        classpath group: 'net.researchgate'         , name: 'gradle-release'       , version: '2.4.0'
+    }
+}
+
+
+//apply plugin: 'net.researchgate.release'
+apply plugin: 'com.jfrog.bintray'
+//
+bintray {
+    user = bintray_user
+    key = bintray_key
+
+    filesSpec {
+        from "./src/main/resources"
+        into "./parsec-base-build/${project.properties['release.releaseVersion']}"
+    }
+
+    publish = true
+
+    pkg {
+        repo = 'Gradle'
+        name = 'parsec-base-build'
+        licenses = ['Apache-2.0']
+        vcsUrl = "https://github.com/wayne-wu/parsec-base-build.git"
+
+        version {
+            name = project.properties['release.releaseVersion']
+        }
+    }
+}
+//
+//release {
+//    failOnUversionedFiles = false
+//}
+//
+//afterReleaseBuild.dependsOn bintrayUpload
