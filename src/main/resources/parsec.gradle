@@ -32,6 +32,7 @@ apply plugin: 'pmd'
 apply plugin: 'findbugs'
 apply plugin: 'jdepend'
 apply plugin: 'project-report'
+apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: 'application'
 apply plugin: 'osgi'
@@ -98,6 +99,26 @@ pmd {
 
 checkstyle {
     ignoreFailures = true
+}
+
+import org.gradle.api.plugins.jetty.internal.JettyPluginWebAppContext
+
+jettyRun {
+    scanIntervalSeconds = 1
+    contextPath = parsecWebappRootPath
+    webAppConfig = new JettyPluginWebAppContext()
+    webAppConfig.resourceBase = ['src/main/webapp', 'build/generated-resources/parsec']
+
+}
+
+war {
+    from 'build/generated-resources/parsec'
+    webInf {
+        from(project.getBuildDir()){
+            include ".*/classes/.*"
+        }
+    }
+
 }
 
 tasks.withType(Checkstyle) {

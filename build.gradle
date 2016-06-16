@@ -52,6 +52,7 @@ updateVersion << {
     ant.replaceregexp(file: readme, match: "/parsec-base-build/\\S+/parsec.gradle", replace: "/parsec-base-build/${releaseVersion}/parsec.gradle")
 }
 
+beforeReleaseBuild.dependsOn check
 afterReleaseBuild.dependsOn bintrayUpload
 
 
