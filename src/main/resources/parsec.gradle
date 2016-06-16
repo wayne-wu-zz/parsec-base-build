@@ -21,8 +21,8 @@ buildscript{
     }
 }
 
-
-project.dependencies
+group = 'com.yahoo.parsec.base_build'
+version = project.version
 
 apply plugin: com.yahoo.parsec.gradle.ParsecGradlePlugin
 apply plugin: 'java'
@@ -37,8 +37,11 @@ apply plugin: 'application'
 apply plugin: 'osgi'
 
 
-group = 'com.yahoo.parsec.base_build'
-version = project.version
+//Example of how to set a profile
+if(project.hasProperty('profile') && project.getProperties().get('profile') == 'no-code-check'){
+    check.enabled = false
+}
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -94,7 +97,7 @@ pmd {
 }
 
 checkstyle {
-    //default config
+    ignoreFailures = true
 }
 
 tasks.withType(Checkstyle) {
