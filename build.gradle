@@ -19,22 +19,23 @@ apply plugin: 'java'
 apply plugin: 'net.researchgate.release'
 apply plugin: 'com.jfrog.bintray'
 
+
 bintray {
-    user = bintray_user
-    key = bintray_key
+    user = bintrayUser
+    key = bintrayKey
 
     filesSpec {
         from "./src/main/resources"
-        into "./parsec-base-build/${project.properties['release.releaseVersion']}"
+        into "./${bintray_package}/${project.properties['release.releaseVersion']}"
     }
 
     publish = true
 
     pkg {
-        repo = 'Gradle'
-        name = 'parsec-base-build'
+        repo = bintrayRepo
+        name = bintrayPackage
         licenses = ['Apache-2.0']
-        vcsUrl = "https://github.com/wayne-wu/parsec-base-build.git"
+        vcsUrl = bintrayVcsURL
 
         version {
             name = project.properties['release.releaseVersion']
@@ -63,12 +64,7 @@ repositories{
 
 dependencies{
     testCompile gradleTestKit()
-    testCompile localGroovy()
     testCompile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.4'
     testCompile group: 'org.spockframework' , name: 'spock-core', version: '1.0-groovy-2.4'
     testCompile group: 'junit'              , name: 'junit'     , version: '4.12'
-}
-
-test {
-    testLogging.showStandardStreams = true
 }

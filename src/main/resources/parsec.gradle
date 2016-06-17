@@ -124,13 +124,13 @@ war {
 tasks.withType(Checkstyle) {
     exclude '**/parsec_generated/**/*'
     exclude '**/generated/**/*'
-    exclude '**/clover/**' //Clover?
+    //exclude '**/clover/**'
 }
 
 tasks.withType(Pmd){
     exclude '**/parsec_generated/**/*'
     exclude '**/generated/**/*'
-    exclude '**/clover/**' //Clover?
+    //exclude '**/clover/**'
 }
 
 

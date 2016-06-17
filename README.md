@@ -1,5 +1,6 @@
 # Parsec Base Build
-The base build provides a parent `parsec.gradle` file for any Parsec project to inherit from. The build file includes
+The base build provides a parent [parsec.gradle](https://github.com/wayne-wu/parsec-base-build/blob/master/src/main/resources/parsec.gradle)
+file for any Parsec project to inherit from. The build file includes
 dependencies, build plugins, and necessary configurations that are used within a Parsec project. These external settings
 are designed to enforce a standardized build process in which enhances the quality of the Parsec client's application.
 It also includes the Parsec Gradle Plugin which is responsible for parsing the RDLs and generating files.
