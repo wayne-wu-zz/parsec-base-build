@@ -17,7 +17,8 @@ buildscript{
         }
     }
     dependencies {
-        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin', version: parsecGradleVersion
+        classpath group: 'gradle.plugin.com.yahoo.parsec', name: 'gradle-plugin'          , version: parsecGradleVersion
+        classpath group: 'org.kt3k.gradle.plugin'        , name: 'coveralls-gradle-plugin', version: coverallsVersion
     }
 }
 
@@ -44,6 +45,8 @@ apply plugin: 'pmd'
 apply plugin: 'findbugs'
 apply plugin: 'jdepend'
 apply plugin: 'project-report'
+apply plugin: 'jacoco'
+apply plugin: org.kt3k.gradle.plugin.CoverallsPlugin
 
 
 //Profile: No-Code-Check
@@ -64,10 +67,10 @@ repositories {
 
 dependencies {
     //NOT AVAILABLE YET
-    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_clients'             , version:'1.0.34'
-    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_config'              , version:'1.0.0'
-    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_validation'          , version:'2.0.0'
-    //compile group: 'com.yahoo.ec.parsec'            , name: 'parsec_logging'             , version:'1.0.2'
+    //compile group: 'com.yahoo.parsec'            , name: 'parsec_clients'             , version:'1.0.34'
+    //compile group: 'com.yahoo.parsec'            , name: 'parsec_config'              , version:'1.0.0'
+    //compile group: 'com.yahoo.parsec'            , name: 'parsec_validation'          , version:'2.0.0'
+    //compile group: 'com.yahoo.parsec'            , name: 'parsec_logging'             , version:'1.0.2'
 
     compile group: 'com.google.inject'              , name: 'guice'                      , version: guiceVersion
     compile group: 'org.glassfish.jersey.core'      , name: 'jersey-common'              , version: jerseyVersion
@@ -141,6 +144,12 @@ tasks.withType(Pmd){
     //exclude '**/clover/**'
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
 
 parsec {
     swaggerRootPath = parsecWebappRootPath
