@@ -26,7 +26,7 @@ bintray {
 
     filesSpec {
         from "./src/main/resources"
-        into "./${bintray_package}/${project.properties['release.releaseVersion']}"
+        into "./${bintrayPackage}/${project.properties['release.releaseVersion']}"
     }
 
     publish = true

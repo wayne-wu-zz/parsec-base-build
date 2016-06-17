@@ -11,7 +11,7 @@ buildscript{
     }
 
     //Add in dependencies for parsec-gradle-plugin
-    repositories{
+    repositories {
         maven{
             url "https://plugins.gradle.org/m2/"
         }
@@ -24,21 +24,29 @@ buildscript{
 group = 'com.yahoo.parsec.base_build'
 version = project.version
 
+
+//Parsec Plugins
 apply plugin: com.yahoo.parsec.gradle.ParsecGradlePlugin
+
+//Language Plugins
 apply plugin: 'java'
+
+//Integration Plugins
 apply plugin: 'maven'
+apply plugin: 'jetty'
+apply plugin: 'osgi'
+apply plugin: 'application'
+apply plugin: 'war'
+
+//Code Enhancement Plugins
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
 apply plugin: 'jdepend'
 apply plugin: 'project-report'
-apply plugin: 'war'
-apply plugin: 'jetty'
-apply plugin: 'application'
-apply plugin: 'osgi'
 
 
-//Example of how to set a profile
+//Profile: No-Code-Check
 if(project.hasProperty('profile') && project.getProperties().get('profile') == 'no-code-check'){
     check.enabled = false
 }
