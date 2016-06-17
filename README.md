@@ -18,5 +18,5 @@ To override properties (eg. version numbers), create identically-named propertie
 ways of doing this, the easiest way is to add in the properties in your project's `gradle.properties` file. Once you have
 define the properties, it will take precedence over the properties defined by the base build.
 
-Below is the list of properties: (the complete list will be inserted)
+You can view the defined properties [here](https://github.com/wayne-wu/parsec-base-build/blob/master/src/main/resources/parsec.gradle)
 
